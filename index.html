@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        .active {
+            color: red;
+        }
+
+        .completed {
+            color: grey;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="buraya todo yazin..." autocomplete="off" id="todo-inp">
+
+    <button id="btn">ADD</button>
+    <div id='divar-kagizi'></div>
+
+    <button id="active">Active</button>
+    <button id="completed">Completed</button>
+    <button id="all">All</button>
+    <script src="./script.js"></script>
+    <script>
+        let a = new Game();
+
+        $("#btn").on('click', function () {
+            let value = $('#todo-inp').val();
+            a.addnewTodo(value);
+            a.showTodos();
+            //  alert('dsfsdf')
+
+        });
+
+        $(document).on('click', '.todo-element', function () {
+            let f = $(this).data('nomre')
+            a.changeStatus(f);
+        });
+        $('#active').on('click', function () {
+            a.filter = "active";
+            a.showTodos();
+        })
+        $('#completed').on('click', function () {
+            a.filter = "completed";
+            a.showTodos();
+        })
+        $('#btn-del').on('click', function () {
+            let f = $(this).data('number');
+            a.removeTodo(f);
+            alert('silindi')
+        })
+        $(document).on('click', '.btn-del', function () {
+            let f = $(this).data('number');
+            a.removeTodo(f);
+             a.showTodos()
+        }
+        )
+    </script>
+
+</body>
+
+</html>
